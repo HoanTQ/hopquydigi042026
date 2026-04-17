@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Team Building Q2/2026 – LANGA FISH HILL ECOLODGE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        :root {
+            --green: #2E7D32;
+            --green-light: #4CAF50;
+            --green-dark: #1B5E20;
+            --green-bg: #E8F5E9;
+            --olive: #6B7B3A;
+            --olive-dark: #555f2e;
+            --orange: #F57C00;
+            --orange-light: #FFB74D;
+            --orange-warm: #FF9800;
+            --orange-bg: #FFF3E0;
+            --white: #FFFFFF;
+            --gray-50: #FAFAFA;
+            --gray-100: #F5F5F5;
+            --gray-200: #EEEEEE;
+            --gray-600: #757575;
+            --gray-800: #424242;
+            --gray-900: #212121;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+            --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* HERO - gradient only, no image */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d3d0d 0%, #1B5E20 35%, #2E7D32 60%, #1a4a1a 100%);
+        }
+        .hero-content {
+            position: relative; z-index: 1; max-width: 800px; padding: 0 24px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 24px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800; line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .hero h1 span { color: var(--orange-light); }
+        .hero p { font-size: 1.15rem; font-weight: 300; opacity: 0.9; margin-bottom: 32px; }
+        .hero-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; font-size: 0.95rem; }
+        .hero-meta div { display: flex; align-items: center; gap: 8px; }
+        .hero-meta i { color: var(--orange-light); }
+        .scroll-hint {
+            position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+            z-index: 1; animation: bounce 2s infinite; color: var(--white); opacity: 0.7; font-size: 1.5rem;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+        .section-label {
+            display: inline-block; background: var(--green-bg); color: var(--green);
+            padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
+            font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700; color: var(--gray-900); margin-bottom: 16px;
+        }
+        .section-subtitle { font-size: 1.05rem; color: var(--gray-600); max-width: 600px; }
+
+        /* KSP */
+        .ksp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 48px; }
+        .ksp-card {
+            background: var(--white); border-radius: var(--radius); padding: 0;
+            box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+            transition: transform 0.3s, box-shadow 0.3s; overflow: hidden;
+        }
+        .ksp-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .ksp-card-top {
+            padding: 28px 28px 20px; display: flex; align-items: center; gap: 16px;
+        }
+        .ksp-icon {
+            width: 64px; height: 64px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; flex-shrink: 0;
+        }
+        .ksp-icon.green { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); color: var(--green); }
+        .ksp-icon.orange { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); color: var(--orange); }
+        .ksp-card-top h3 { font-size: 1.15rem; font-weight: 700; color: var(--gray-900); }
+        .ksp-card-body { padding: 0 28px 28px; }
+        .ksp-card-body p { color: var(--gray-600); font-size: 0.95rem; }
+        .ksp-stat {
+            display: flex; align-items: center; gap: 8px;
+            margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--gray-200);
+        }
+        .ksp-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; font-weight: 800; line-height: 1;
+        }
+        .ksp-stat-number.green { color: var(--green); }
+        .ksp-stat-number.orange { color: var(--orange); }
+        .ksp-stat-label { font-size: 0.8rem; color: var(--gray-600); line-height: 1.3; }
+
+        /* ACTIVITIES */
+        .activities-section { background: var(--olive); color: var(--white); }
+        .activities-section .section-label { background: rgba(255,255,255,0.15); color: var(--white); }
+        .activities-section .section-title { color: var(--white); }
+        .activities-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; margin-top: 48px;
+        }
+        .activity-card {
+            text-align: center; padding: 20px 12px;
+            background: rgba(255,255,255,0.08); border-radius: var(--radius);
+            transition: transform 0.3s, background 0.3s;
+        }
+        .activity-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.15); }
+        .activity-icon {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); margin: 0 auto 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+        .activity-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+        .activity-card .activity-en { font-size: 0.75rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
+        .activity-card .activity-note { font-size: 0.75rem; opacity: 0.7; margin-top: 4px; font-style: italic; }
+        .activities-banner {
+            width: 100%; border-radius: var(--radius); margin-top: 32px;
+            overflow: hidden; box-shadow: var(--shadow-lg);
+        }
+        .activities-banner img { width: 100%; display: block; }
+
+        /* VIDEO */
+        .video-section { background: var(--gray-100); }
+        .video-wrap {
+            margin-top: 48px; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow-lg); position: relative;
+            max-width: 640px; margin-left: auto; margin-right: auto;
+        }
+        .video-wrap video {
+            width: 100%; display: block; border-radius: var(--radius);
+        }
+
+        /* ROOMS */
+        .rooms-section { background: var(--olive); color: var(--white); }
+        .rooms-section .section-label { background: rgba(255,255,255,0.15); color: var(--white); }
+        .rooms-section .section-title { color: var(--white); }
+        .rooms-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px; margin-top: 48px;
+        }
+        .room-card {
+            background: rgba(255,255,255,0.95); color: var(--gray-800);
+            border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow-lg); transition: transform 0.3s;
+        }
+        .room-card:hover { transform: translateY(-4px); }
+        .room-card-header {
+            padding: 20px 24px 12px;
+        }
+        .room-card-img {
+            width: 100%; height: 220px; object-fit: cover; cursor: pointer;
+            transition: filter 0.3s;
+        }
+        .room-card-img:hover { filter: brightness(0.85); }
+        .room-card-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; font-weight: 700; color: var(--gray-900); margin-bottom: 4px;
+        }
+        .room-card-body { padding: 0 24px 24px; }
+        .room-card-body p { font-size: 0.88rem; color: var(--gray-600); margin-bottom: 6px; line-height: 1.6; }
+        .room-card-body .room-capacity {
+            display: inline-block; background: var(--green-bg); color: var(--green);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 8px;
+        }
+
+        /* GALLERY */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px; margin-top: 48px;
+        }
+        .gallery-item { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; position: relative; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-caption {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white); font-size: 0.9rem; font-weight: 500;
+        }
+
+        /* TIMELINE */
+        .timeline { position: relative; margin-top: 48px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 24px; top: 0; bottom: 0;
+            width: 3px; background: linear-gradient(var(--green), var(--orange)); border-radius: 2px;
+        }
+        .timeline-day { margin-bottom: 40px; }
+        .timeline-day-label {
+            display: inline-block; background: var(--green); color: var(--white);
+            padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+            margin-bottom: 20px; margin-left: 8px;
+        }
+        .timeline-day:last-child .timeline-day-label { background: var(--orange); }
+        .timeline-item { display: flex; gap: 20px; margin-bottom: 16px; align-items: flex-start; }
+        .timeline-dot {
+            width: 48px; min-width: 48px; height: 48px; border-radius: 50%;
+            background: var(--white); border: 3px solid var(--green-light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; color: var(--green); z-index: 1;
+        }
+        .timeline-day:last-child .timeline-dot { border-color: var(--orange); color: var(--orange); }
+        .timeline-content {
+            background: var(--white); border-radius: 12px; padding: 16px 20px;
+            box-shadow: var(--shadow); border: 1px solid var(--gray-200); flex: 1;
+        }
+        .timeline-content h4 { font-size: 1rem; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+        .timeline-content p { font-size: 0.9rem; color: var(--gray-600); }
+
+        /* COST */
+        .cost-section { background: var(--white); }
+        .cost-table-wrap {
+            margin-top: 48px; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+        }
+        .cost-table { width: 100%; border-collapse: collapse; }
+        .cost-table thead { background: linear-gradient(135deg, var(--green-dark), var(--green)); color: var(--white); }
+        .cost-table th { padding: 16px 20px; text-align: left; font-weight: 600; font-size: 0.9rem; }
+        .cost-table td { padding: 14px 20px; border-bottom: 1px solid var(--gray-200); font-size: 0.95rem; }
+        .cost-table tbody tr:hover { background: var(--gray-100); }
+        .cost-table .total-row { background: var(--orange-bg); font-weight: 700; }
+        .cost-table .total-row td { color: var(--orange); font-size: 1.05rem; border-bottom: none; }
+        .cost-note {
+            margin-top: 16px; padding: 14px 20px; background: #FFF8E1; border-left: 4px solid var(--orange);
+            border-radius: 8px; font-size: 0.9rem; color: var(--gray-800);
+        }
+        .cost-per-person {
+            margin-top: 20px; text-align: center; padding: 20px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            border-radius: 12px; color: var(--white);
+        }
+        .cost-per-person .amount { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
+
+        /* NOTES */
+        .notes-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; margin-top: 48px;
+        }
+        .note-card {
+            background: var(--white); border-radius: 12px; padding: 24px;
+            box-shadow: var(--shadow); border-left: 4px solid var(--orange);
+            display: flex; gap: 16px; align-items: flex-start;
+        }
+        .note-card.green-border { border-left-color: var(--green); }
+        .note-card i { font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
+        .note-card i.orange { color: var(--orange); }
+        .note-card i.green { color: var(--green); }
+        .note-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+        .note-card p { font-size: 0.9rem; color: var(--gray-600); }
+
+        /* PROMO */
+        .promo-banner {
+            background: linear-gradient(135deg, var(--orange), var(--orange-warm));
+            color: var(--white); text-align: center; padding: 32px 24px;
+            border-radius: var(--radius); margin-top: 48px;
+        }
+        .promo-banner i { font-size: 2rem; margin-bottom: 12px; }
+        .promo-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px; }
+        .promo-banner p { opacity: 0.9; }
+
+        /* CTA */
+        .cta-section {
+            text-align: center; padding: 100px 0;
+            background: linear-gradient(135deg, var(--green-dark), var(--green)); color: var(--white);
+        }
+        .cta-section .section-title { color: var(--white); }
+        .cta-section p { color: rgba(255,255,255,0.85); margin-bottom: 36px; font-size: 1.1rem; }
+        .btn-cta {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--orange); color: var(--white);
+            padding: 18px 48px; border-radius: 60px; font-size: 1.1rem; font-weight: 700;
+            text-decoration: none; border: none; cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(245,124,0,0.4);
+        }
+        .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,124,0,0.5); }
+
+        footer {
+            text-align: center; padding: 32px 24px;
+            background: var(--gray-900); color: var(--gray-600); font-size: 0.85rem;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none; position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+            cursor: zoom-out; padding: 24px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 95vw; max-height: 90vh; object-fit: contain;
+            border-radius: 8px; box-shadow: 0 0 60px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 28px;
+            color: var(--white); font-size: 2rem; cursor: pointer;
+            background: none; border: none; opacity: 0.7; transition: opacity 0.2s;
+        }
+        .lightbox-close:hover { opacity: 1; }
+        .lightbox-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            color: var(--white); font-size: 2.5rem; cursor: pointer;
+            background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
+            width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
+            opacity: 0.7; transition: opacity 0.2s, background 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .lightbox-nav:hover { opacity: 1; background: rgba(255,255,255,0.2); }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        .lightbox-counter {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            color: var(--white); font-size: 0.9rem; opacity: 0.7;
+            background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            .hero { min-height: 500px; }
+            .hero-meta { gap: 16px; font-size: 0.85rem; }
+            .timeline::before { left: 23px; }
+            .cost-table th, .cost-table td { padding: 10px 12px; font-size: 0.85rem; }
+            .ksp-grid, .rooms-grid { grid-template-columns: 1fr; }
+            .activities-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+        }
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Proposal Q2 / 2026</div>
+            <h1>Team Building <span>&amp;</span> Recharge<br>tại <span>LANGA FISH HILL</span></h1>
+            <p>2 Ngày 1 Đêm nghỉ dưỡng, gắn kết và nạp lại năng lượng giữa thiên nhiên xanh mát</p>
+            <div class="hero-meta">
+                <div><i class="fas fa-map-marker-alt"></i> Langa Fish Hill Ecolodge</div>
+                <div><i class="fas fa-users"></i> 30 người</div>
+                <div><i class="fas fa-calendar-alt"></i> Tháng 4/2026</div>
+            </div>
+        </div>
+        <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <!-- KEY SELLING POINTS -->
+    <section>
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Tại sao chọn nơi đây?</span>
+                <h2 class="section-title">Điểm đến lý tưởng cho đội ngũ</h2>
+                <p class="section-subtitle">Chỉ cách Biên Hòa 2 giờ di chuyển — dành trọn thời gian cho trải nghiệm</p>
+            </div>
+            <div class="ksp-grid">
+                <div class="ksp-card fade-in">
+                    <div class="ksp-card-top">
+                        <div class="ksp-icon green"><i class="fas fa-leaf"></i></div>
+                        <h3>Gần gũi thiên nhiên</h3>
+                    </div>
+                    <div class="ksp-card-body">
+                        <p>Bungalow view hồ, không gian xanh mát giữa đồi cá La Ngà — nơi lý tưởng để giải tỏa căng thẳng sau một quý làm việc vất vả.</p>
+                        <div class="ksp-stat">
+                            <div class="ksp-stat-number green">2h</div>
+                            <div class="ksp-stat-label">di chuyển từ<br>Biên Hòa</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ksp-card fade-in">
+                    <div class="ksp-card-top">
+                        <div class="ksp-icon orange"><i class="fas fa-running"></i></div>
+                        <h3>Hoạt động đa dạng</h3>
+                    </div>
+                    <div class="ksp-card-body">
+                        <p>Chèo SUP, Bắn cung, Hồ bơi nước mặn, Go Kart, Zipline — trải nghiệm "All-in-one" ngay trong khuôn viên resort.</p>
+                        <div class="ksp-stat">
+                            <div class="ksp-stat-number orange">12+</div>
+                            <div class="ksp-stat-label">hoạt động<br>vui chơi</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ksp-card fade-in">
+                    <div class="ksp-card-top">
+                        <div class="ksp-icon green"><i class="fas fa-utensils"></i></div>
+                        <h3>Ẩm thực &amp; Gắn kết</h3>
+                    </div>
+                    <div class="ksp-card-body">
+                        <p>Tiệc BBQ bên hồ, lửa trại giao lưu âm nhạc — không gian lý tưởng để xóa bỏ khoảng cách giữa các thành viên.</p>
+                        <div class="ksp-stat">
+                            <div class="ksp-stat-number green">2N1Đ</div>
+                            <div class="ksp-stat-label">trọn gói<br>ăn uống &amp; nghỉ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="activities-section">
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Vui chơi không giới hạn</span>
+                <h2 class="section-title">Các trò chơi — Hoạt động tại LANGA FISH HILL</h2>
+            </div>
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-water"></i></div>
+                    <h4>Chèo SUP</h4>
+                    <div class="activity-en">SUP Paddling</div>
+                    <div class="activity-note">Hồ Thanh Bình / Hồ Trị An</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Bắn cung</h4>
+                    <div class="activity-en">Archery</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-swimming-pool"></i></div>
+                    <h4>Bể bơi nước mặn</h4>
+                    <div class="activity-en">Saltwater Pool</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-flag-checkered"></i></div>
+                    <h4>Đua xe Go Kart</h4>
+                    <div class="activity-en">Go-Kart Racing</div>
+                    <div class="activity-note">Mỗi combo 1 lượt chạy</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-bicycle"></i></div>
+                    <h4>Đạp xe đạp</h4>
+                    <div class="activity-en">Cycling</div>
+                    <div class="activity-note">Rừng &amp; nội khu (60 phút/lần)</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-wind"></i></div>
+                    <h4>Thả diều</h4>
+                    <div class="activity-en">Kite Flying</div>
+                    <div class="activity-note">Theo mùa</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Zipline</h4>
+                    <div class="activity-en">Zipline</div>
+                    <div class="activity-note">Theo mùa</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-fish"></i></div>
+                    <h4>Câu cá</h4>
+                    <div class="activity-en">Fishing</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-paw"></i></div>
+                    <h4>Cho thỏ &amp; chim ăn</h4>
+                    <div class="activity-en">Rabbit &amp; Bird Feeding</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-gamepad"></i></div>
+                    <h4>Khu game miễn phí</h4>
+                    <div class="activity-en">Billiards · Foosball · Air Hockey</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-fire"></i></div>
+                    <h4>Lửa trại</h4>
+                    <div class="activity-en">Campfire</div>
+                </div>
+                <div class="activity-card fade-in">
+                    <div class="activity-icon"><i class="fas fa-ship"></i></div>
+                    <h4>Kéo thiên nga</h4>
+                    <div class="activity-en">Towable Tubing</div>
+                </div>
+            </div>
+            <div class="activities-banner fade-in">
+                <img src="image/hoat dong vui choi giai tri.jpg" alt="Các hoạt động vui chơi giải trí tại Langa Fish Hill" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOMS -->
+    <section class="rooms-section">
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Lưu trú</span>
+                <h2 class="section-title">Các hạng phòng tại LANGA FISH HILL</h2>
+            </div>
+            <div class="rooms-grid">
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong Lake view.jpg" alt="Lake View 1" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Lake View 1</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Phòng rộng ~20m², trang bị 1 giường đôi rộng rãi. Nằm sát bên hồ Thanh Bình, ban công hướng hồ — nơi ngắm bình minh, hoàng hôn tuyệt đẹp.</p>
+                        <p>Phù hợp cho gia đình nhỏ hoặc cặp đôi muốn nghỉ dưỡng gần gũi thiên nhiên.</p>
+                        <span class="room-capacity"><i class="fas fa-user-friends"></i> 2 người lớn + 1 em bé</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong Lake view.jpg" alt="Lake View 2" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Lake View 2</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Phòng rộng ~22m², trang bị 1 giường đôi. Không gian thoáng mát với hai lối cửa tiện lợi, phía trước là hồ Thanh Bình thơ mộng, phía sau là khu vui chơi.</p>
+                        <p>Lý tưởng cho gia đình có trẻ nhỏ hoặc cặp đôi đi cùng thú cưng.</p>
+                        <span class="room-capacity"><i class="fas fa-user-friends"></i> 2 người lớn + 1 em bé</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong Bungalow.jpg" alt="Family Bungalow" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Family Bungalow</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Gồm 1 phòng ngủ riêng biệt và 1 phòng khách rộng rãi với sofa bed linh hoạt. Từ cửa sổ và ban công, ngắm toàn cảnh Vịnh Fish Hill.</p>
+                        <p>Lựa chọn lý tưởng cho gia đình nhỏ hoặc nhóm bạn muốn không gian riêng tư.</p>
+                        <span class="room-capacity"><i class="fas fa-users"></i> 3–4 khách</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong Bungalow.jpg" alt="Garden Bungalow" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Garden Bungalow</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Không gian ấm cúng với 1 giường to rộng rãi, phù hợp 2–3 khách. Chỉ vài bước chân đến Vịnh Fish Hill và quán cà phê AROMA xinh xắn.</p>
+                        <p>Lựa chọn hoàn hảo cho cặp đôi hoặc gia đình nhỏ muốn tìm chốn nghỉ ngơi yên bình.</p>
+                        <span class="room-capacity"><i class="fas fa-users"></i> 2–3 khách</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong Chien Huu.jpg" alt="Nhà Chiến Hữu" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Nhà Chiến Hữu</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Không gian lưu trú rộng rãi, thiết kế 2 tầng hiện đại. Bố trí 20 giường đôi đầy đủ tiện nghi. Bên ngoài có khu vệ sinh riêng biệt, tiện lợi.</p>
+                        <p>Dành cho nhóm bạn lớn hoặc đại gia đình muốn tận hưởng không gian nghỉ dưỡng rộng rãi.</p>
+                        <span class="room-capacity"><i class="fas fa-users"></i> 40–60 người lớn</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong Chien Huu.jpg" alt="Cozy Home" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Cozy Home</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Thiết kế 2 tầng hiện đại, thoáng đãng với 8 giường đôi êm ái. Bên trong có 3 nhà vệ sinh riêng biệt, sạch sẽ, đầy đủ tiện nghi.</p>
+                        <p>Dành cho gia đình đông người, nhóm bạn thân hoặc các cặp đôi muốn tìm nơi nghỉ dưỡng riêng tư.</p>
+                        <span class="room-capacity"><i class="fas fa-users"></i> 16–20 người lớn</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong chill home.jpg" alt="Chill Home" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Chill Home</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Không gian lưu trú rộng rãi, thoáng mát, thiết kế 2 tầng hiện đại. Bố trí 20 giường đôi đầy đủ tiện nghi, khu vệ sinh riêng biệt bên ngoài.</p>
+                        <p>Dành cho nhóm bạn lớn hoặc đại gia đình muốn tận hưởng không gian gần gũi thiên nhiên.</p>
+                        <span class="room-capacity"><i class="fas fa-users"></i> 40–60 người lớn</span>
+                    </div>
+                </div>
+                <div class="room-card fade-in">
+                    <img class="room-card-img" src="image/phong chill home.jpg" alt="Mango" loading="lazy">
+                    <div class="room-card-header">
+                        <h3>Mango</h3>
+                    </div>
+                    <div class="room-card-body">
+                        <p>Khu phòng nghỉ rộng rãi, bao quanh bởi vườn xoài xanh mát. Gồm phòng 2 giường đôi (4–5 khách) và phòng 3 giường đôi (6–7 khách).</p>
+                        <p>Lý tưởng cho gia đình lớn hoặc nhóm bạn muốn tìm nơi nghỉ dưỡng gần gũi thiên nhiên.</p>
+                        <span class="room-capacity"><i class="fas fa-users"></i> 4–7 khách / phòng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section style="background: var(--white);">
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Trải nghiệm</span>
+                <h2 class="section-title">Hình ảnh tại LANGA FISH HILL</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 2.jpg" alt="Toàn cảnh khu nghỉ dưỡng" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-mountain"></i> Toàn cảnh khu nghỉ dưỡng</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 3.jpg" alt="Không gian xanh mát" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-leaf"></i> Không gian xanh mát</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 4.jpg" alt="Hoạt động ngoài trời" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-sun"></i> Hoạt động ngoài trời</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/cafe aroma view ho.jpg" alt="Cafe Aroma view hồ" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-coffee"></i> Cafe Aroma — View hồ</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 6.jpg" alt="Khuôn viên resort" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-tree"></i> Khuôn viên resort</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/thuc don.jpg" alt="Ẩm thực trọn gói" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-utensils"></i> Ẩm thực trọn gói</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO REVIEW -->
+    <section class="video-section">
+        <div class="container" style="text-align:center;">
+            <div class="fade-in">
+                <span class="section-label">Video Review</span>
+                <h2 class="section-title">Trải nghiệm thực tế tại LANGA FISH HILL</h2>
+                <p class="section-subtitle" style="margin:0 auto 0;">Xem video để cảm nhận không gian và các hoạt động tại khu nghỉ dưỡng</p>
+            </div>
+            <div class="video-wrap fade-in">
+                <video controls preload="metadata" poster="image/minh hoa 1.jpg">
+                    <source src="image/Video review.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ phát video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGENDA / TIMELINE -->
+    <section>
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Lịch trình</span>
+                <h2 class="section-title">Agenda 2 Ngày 1 Đêm</h2>
+                <p class="section-subtitle">Khởi hành từ Biên Hòa lúc 13:00 — Kết thúc lúc 15:30 ngày hôm sau</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-day fade-in">
+                    <div class="timeline-day-label"><i class="fas fa-sun"></i> Ngày 1 — Khám phá &amp; Kết nối</div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">13:00</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-bus"></i> Xuất phát từ Biên Hòa</h4>
+                            <p>Tập trung tại văn phòng, lên xe di chuyển đến Langa Fish Hill (~2 tiếng)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">15:00</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-door-open"></i> Check-in &amp; Nghỉ ngơi</h4>
+                            <p>Nhận phòng bungalow, ổn định hành lý, tự do khám phá khuôn viên</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">16:00</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-swimmer"></i> Hoạt động tự do</h4>
+                            <p>Chèo SUP · Bắn cung · Hồ bơi nước mặn — tự do lựa chọn theo sở thích</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">18:30</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-fire"></i> Tiệc BBQ &amp; Lửa trại</h4>
+                            <p>Tiệc nướng bên hồ, giao lưu âm nhạc, lửa trại — khoảnh khắc gắn kết đội ngũ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-day fade-in">
+                    <div class="timeline-day-label"><i class="fas fa-cloud-sun"></i> Ngày 2 — Team Building &amp; Trải nghiệm</div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">07:30</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-coffee"></i> Ăn sáng</h4>
+                            <p>Buffet sáng tại nhà hàng, nạp năng lượng cho ngày mới</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">09:00</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-people-carry"></i> Team Building tập trung</h4>
+                            <p>Các trò chơi gắn kết đội nhóm — thử thách phối hợp, thi đua giữa các team</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">11:30</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-utensils"></i> Ăn trưa</h4>
+                            <p>Thưởng thức bữa trưa đặc sản địa phương</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">13:30</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-flag-checkered"></i> Nghỉ ngơi &amp; Go Kart</h4>
+                            <p>Trải nghiệm đua xe Go Kart — hoạt động cảm giác mạnh trước khi về</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">15:30</div>
+                        <div class="timeline-content">
+                            <h4><i class="fas fa-home"></i> Kết thúc chương trình</h4>
+                            <p>Chụp ảnh lưu niệm, lên xe di chuyển về Biên Hòa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COST TABLE -->
+    <section class="cost-section">
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Chi phí</span>
+                <h2 class="section-title">Dự toán ngân sách</h2>
+                <p class="section-subtitle">Tính cho 30 người — Combo cuối tuần (Thứ 7)</p>
+            </div>
+            <div class="cost-table-wrap fade-in">
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Hạng mục</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th style="text-align:right;">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Combo 2N1Đ (Cuối tuần)</td>
+                            <td>1.500.000 đ/người</td>
+                            <td>30 người</td>
+                            <td style="text-align:right;">45.000.000 đ</td>
+                        </tr>
+                        <tr>
+                            <td>Phí Team Building</td>
+                            <td>100.000 đ/người</td>
+                            <td>30 người</td>
+                            <td style="text-align:right;">3.000.000 đ</td>
+                        </tr>
+                        <tr>
+                            <td>Thuê loa / Âm thanh (4 tiếng)</td>
+                            <td>500.000 đ</td>
+                            <td>1 bộ</td>
+                            <td style="text-align:right;">500.000 đ</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="3"><i class="fas fa-calculator"></i> TỔNG CỘNG</td>
+                            <td style="text-align:right;">48.500.000 đ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cost-note fade-in">
+                <i class="fas fa-info-circle" style="color:var(--orange);margin-right:8px;"></i>
+                <strong>Lưu ý:</strong> Dự toán trên <strong>chưa bao gồm chi phí di chuyển</strong> (thuê xe từ Biên Hòa đến Langa Fish Hill và ngược lại). Chi phí xe sẽ được báo giá riêng tùy theo loại xe và nhà cung cấp.
+            </div>
+            <div class="cost-per-person fade-in">
+                <div style="font-size:0.9rem; opacity:0.85; margin-bottom:4px;">Chi phí bình quân mỗi người (chưa gồm di chuyển)</div>
+                <div class="amount">~ 1.617.000 đ / người</div>
+                <div style="font-size:0.85rem; opacity:0.7; margin-top:4px;">Đã bao gồm ăn uống, phòng nghỉ, team building &amp; âm thanh</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTES & RISKS -->
+    <section>
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Lưu ý</span>
+                <h2 class="section-title">Thông tin cần biết &amp; Rủi ro</h2>
+            </div>
+            <div class="notes-grid">
+                <div class="note-card fade-in">
+                    <i class="fas fa-bed orange"></i>
+                    <div>
+                        <h4>Đặt phòng sớm</h4>
+                        <p>Phòng cần đăng ký trước để giữ chỗ. Ưu tiên phòng view hồ / bungalow nếu còn trống.</p>
+                    </div>
+                </div>
+                <div class="note-card green-border fade-in">
+                    <i class="fas fa-cloud-sun-rain green"></i>
+                    <div>
+                        <h4>Thời tiết</h4>
+                        <p>Tháng 4 có thể có mưa rào buổi chiều. Nên chuẩn bị phương án dự phòng cho hoạt động ngoài trời.</p>
+                    </div>
+                </div>
+                <div class="note-card fade-in">
+                    <i class="fas fa-bus orange"></i>
+                    <div>
+                        <h4>Di chuyển</h4>
+                        <p>Khoảng cách ~70km từ Biên Hòa, di chuyển khoảng 2 tiếng. Cần book xe sớm cho 30 người.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-banner fade-in">
+                <i class="fas fa-gift"></i>
+                <h3>🥭 Ưu đãi tháng 4</h3>
+                <p>Đi trong tháng 4 — mỗi người được tặng <strong>5kg xoài</strong> mang về.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title">Sẵn sàng cho chuyến đi?</h2>
+                <p>Hãy phê duyệt để chúng tôi tiến hành đặt phòng và lên kế hoạch chi tiết.</p>
+                <button class="btn-cta" onclick="handleApprove()">
+                    <i class="fas fa-check-circle"></i> Phê duyệt ngay
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Proposal được chuẩn bị bởi đệ Kiro dưới sự giám sát của pak Hoàn — Q2/2026</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Đóng"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)" aria-label="Ảnh trước"><i class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Xem ảnh lớn" onclick="event.stopPropagation()">
+        <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)" aria-label="Ảnh tiếp"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <script>
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // CTA
+        function handleApprove() {
+            const btn = document.querySelector('.btn-cta');
+            btn.innerHTML = '<i class="fas fa-check"></i> Đã phê duyệt!';
+            btn.style.background = 'var(--green)';
+            btn.style.boxShadow = '0 4px 20px rgba(46,125,50,0.4)';
+            btn.style.pointerEvents = 'none';
+        }
+
+        // Lightbox with navigation
+        let lbImages = [];
+        let lbIndex = 0;
+
+        function openLightbox(src, images, index) {
+            lbImages = images || [src];
+            lbIndex = index || 0;
+            showLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function navLightbox(dir) {
+            event.stopPropagation();
+            lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+            showLightboxImage();
+        }
+        function showLightboxImage() {
+            document.getElementById('lightbox-img').src = lbImages[lbIndex];
+            document.getElementById('lightbox-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+        }
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; showLightboxImage(); }
+            if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbImages.length; showLightboxImage(); }
+        });
+
+        // Collect gallery images
+        const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+        const gallerySrcs = galleryImgs.map(img => img.src);
+        galleryImgs.forEach((img, i) => {
+            img.addEventListener('click', () => openLightbox(img.src, gallerySrcs, i));
+        });
+
+        // Collect room card images
+        const roomImgs = Array.from(document.querySelectorAll('.room-card-img'));
+        const roomSrcs = roomImgs.map(img => img.src);
+        roomImgs.forEach((img, i) => {
+            img.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(img.src, roomSrcs, i); });
+        });
+    </script>
+</body>
+
+</html>
