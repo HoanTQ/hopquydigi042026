@@ -294,6 +294,54 @@
         .note-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
         .note-card p { font-size: 0.9rem; color: var(--gray-600); }
 
+        /* MENU COMBO */
+        .menu-section { background: var(--gray-50); }
+        .menu-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px; margin-top: 48px;
+        }
+        .menu-card {
+            background: var(--white); border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .menu-card-header {
+            padding: 20px 24px 12px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .menu-card-header .menu-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; flex-shrink: 0;
+        }
+        .menu-icon.breakfast { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); color: var(--orange); }
+        .menu-icon.lunch { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); color: var(--green); }
+        .menu-icon.bbq { background: linear-gradient(135deg, #FCE4EC, #F8BBD0); color: #C62828; }
+        .menu-card-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; font-weight: 700; color: var(--gray-900);
+        }
+        .menu-card-header .menu-tag {
+            font-size: 0.75rem; font-weight: 500; color: var(--gray-600);
+        }
+        .menu-card-body { padding: 0 24px 24px; }
+        .menu-card-body ul {
+            list-style: none; padding: 0;
+        }
+        .menu-card-body ul li {
+            padding: 8px 0; border-bottom: 1px dashed var(--gray-200);
+            font-size: 0.92rem; color: var(--gray-800);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .menu-card-body ul li:last-child { border-bottom: none; }
+        .menu-card-body ul li i { color: var(--gray-600); font-size: 0.7rem; opacity: 0.5; }
+        .menu-card-note {
+            margin: 12px 0 0; padding: 10px 14px;
+            background: var(--orange-bg); border-radius: 10px;
+            font-size: 0.82rem; color: var(--orange); font-style: italic;
+        }
+
         /* PROMO */
         .promo-banner {
             background: linear-gradient(135deg, var(--orange), var(--orange-warm));
@@ -360,6 +408,46 @@
             background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: 20px;
         }
 
+        /* NAVBAR */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(27, 94, 32, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 0 24px;
+            transform: translateY(-100%);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+        .navbar.visible { transform: translateY(0); }
+        .navbar-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 56px;
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem; font-weight: 700; color: var(--white);
+            white-space: nowrap; text-decoration: none;
+        }
+        .navbar-brand span { color: var(--orange-light); }
+        .navbar-links {
+            display: flex; gap: 4px; list-style: none; align-items: center;
+        }
+        .navbar-links a {
+            color: rgba(255,255,255,0.8); text-decoration: none;
+            font-size: 0.82rem; font-weight: 500; padding: 8px 14px;
+            border-radius: 8px; transition: color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+        .navbar-links a:hover,
+        .navbar-links a.active {
+            color: var(--white); background: rgba(255,255,255,0.12);
+        }
+        .navbar-toggle {
+            display: none; background: none; border: none; color: var(--white);
+            font-size: 1.4rem; cursor: pointer; padding: 8px;
+        }
+
         @media (max-width: 768px) {
             section { padding: 60px 0; }
             .hero { min-height: 500px; }
@@ -368,19 +456,46 @@
             .cost-table th, .cost-table td { padding: 10px 12px; font-size: 0.85rem; }
             .ksp-grid, .rooms-grid { grid-template-columns: 1fr; }
             .activities-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .navbar-toggle { display: block; }
+            .navbar-links {
+                display: none; position: absolute; top: 56px; left: 0; right: 0;
+                background: rgba(27, 94, 32, 0.98); flex-direction: column;
+                padding: 8px 16px 16px; gap: 2px;
+            }
+            .navbar-links.open { display: flex; }
+            .navbar-links a { padding: 12px 16px; font-size: 0.9rem; border-radius: 8px; }
         }
 </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#hero" class="navbar-brand">LANGA <span>FISH HILL</span></a>
+            <button class="navbar-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="#ksp">Điểm nổi bật</a></li>
+                <li><a href="#activities">Hoạt động</a></li>
+                <li><a href="#rooms">Lưu trú</a></li>
+                <li><a href="#gallery">Hình ảnh</a></li>
+                <li><a href="#menu">Thực đơn</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#agenda">Lịch trình</a></li>
+                <li><a href="#cost">Chi phí</a></li>
+                <li><a href="#notes">Lưu ý</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-badge">Proposal Q2 / 2026</div>
             <h1>Team Building <span>&amp;</span> Recharge<br>tại <span>LANGA FISH HILL</span></h1>
             <p>2 Ngày 1 Đêm nghỉ dưỡng, gắn kết và nạp lại năng lượng giữa thiên nhiên xanh mát</p>
             <div class="hero-meta">
-                <div><i class="fas fa-map-marker-alt"></i> Langa Fish Hill Ecolodge</div>
+                <div><a href="https://www.google.com/maps/place/LA+NG%C3%80+FISH+HILL/@11.1731006,107.2634453,1422m/data=!3m1!1e3!4m6!3m5!1s0x3174f5dc824bd4f1:0x30546da21411f53!8m2!3d11.1731006!4d107.2634453!16s%2Fg%2F11kpr2qnfd?entry=ttu&g_ep=EgoyMDI2MDQxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,0.5);padding-bottom:2px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--orange-light)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.5)'"><i class="fas fa-map-marker-alt" style="margin-right:8px;"></i>Langa Fish Hill Ecolodge</a></div>
                 <div><i class="fas fa-users"></i> 30 người</div>
                 <div><i class="fas fa-calendar-alt"></i> Tháng 4/2026</div>
             </div>
@@ -389,7 +504,7 @@
     </section>
 
     <!-- KEY SELLING POINTS -->
-    <section>
+    <section id="ksp">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Tại sao chọn nơi đây?</span>
@@ -441,7 +556,7 @@
     </section>
 
     <!-- ACTIVITIES -->
-    <section class="activities-section">
+    <section class="activities-section" id="activities">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Vui chơi không giới hạn</span>
@@ -521,7 +636,7 @@
     </section>
 
     <!-- ROOMS -->
-    <section class="rooms-section">
+    <section class="rooms-section" id="rooms">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Lưu trú</span>
@@ -621,7 +736,7 @@
     </section>
 
     <!-- GALLERY -->
-    <section style="background: var(--white);">
+    <section style="background: var(--white);" id="gallery">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Trải nghiệm</span>
@@ -629,8 +744,8 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item fade-in">
-                    <img src="image/minh hoa 2.jpg" alt="Toàn cảnh khu nghỉ dưỡng" loading="lazy">
-                    <div class="gallery-caption"><i class="fas fa-mountain"></i> Toàn cảnh khu nghỉ dưỡng</div>
+                    <img src="image/minh hoa 2.jpg" alt="Khu nghỉ dưỡng view hồ" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-water"></i> Khu nghỉ dưỡng view hồ</div>
                 </div>
                 <div class="gallery-item fade-in">
                     <img src="image/minh hoa 3.jpg" alt="Không gian xanh mát" loading="lazy">
@@ -641,23 +756,117 @@
                     <div class="gallery-caption"><i class="fas fa-sun"></i> Hoạt động ngoài trời</div>
                 </div>
                 <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 5.jpg" alt="Khuôn viên xanh mát" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-tree"></i> Khuôn viên xanh mát</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 6.jpg" alt="Khuôn viên resort" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-home"></i> Khuôn viên resort</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 7.jpg" alt="Trải nghiệm thiên nhiên" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-seedling"></i> Trải nghiệm thiên nhiên</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 8.jpg" alt="Không gian nghỉ dưỡng" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-spa"></i> Không gian nghỉ dưỡng</div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="image/minh hoa 9.jpg" alt="Góc thư giãn" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-umbrella-beach"></i> Góc thư giãn</div>
+                </div>
+                <div class="gallery-item fade-in">
                     <img src="image/cafe aroma view ho.jpg" alt="Cafe Aroma view hồ" loading="lazy">
                     <div class="gallery-caption"><i class="fas fa-coffee"></i> Cafe Aroma — View hồ</div>
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="image/minh hoa 6.jpg" alt="Khuôn viên resort" loading="lazy">
-                    <div class="gallery-caption"><i class="fas fa-tree"></i> Khuôn viên resort</div>
+                    <img src="image/hoat dong 9.jpg" alt="Hoạt động vui chơi" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-running"></i> Hoạt động vui chơi</div>
                 </div>
-                <div class="gallery-item fade-in">
-                    <img src="image/thuc don.jpg" alt="Ẩm thực trọn gói" loading="lazy">
-                    <div class="gallery-caption"><i class="fas fa-utensils"></i> Ẩm thực trọn gói</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU COMBO -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="fade-in">
+                <span class="section-label">Ẩm thực</span>
+                <h2 class="section-title">Thực đơn Combo 2N1Đ</h2>
+                <p class="section-subtitle">Trọn gói 3 bữa — từ sáng đến tiệc tối ngoài trời bên hồ</p>
+            </div>
+            <div class="menu-grid">
+                <!-- Bữa sáng -->
+                <div class="menu-card fade-in">
+                    <div class="menu-card-header">
+                        <div class="menu-icon breakfast"><i class="fas fa-mug-hot"></i></div>
+                        <div>
+                            <h3>Bữa Sáng</h3>
+                            <div class="menu-tag">Ngày 2 · Chọn 01 đồ ăn &amp; 01 đồ uống</div>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Bún sườn nấm</li>
+                            <li><i class="fas fa-circle"></i> Bánh canh cá lóc</li>
+                            <li><i class="fas fa-circle"></i> Mỳ Ý sốt bò bằm</li>
+                        </ul>
+                        <div class="menu-card-note">
+                            <i class="fas fa-coffee"></i> Đồ uống: Cafe đen / Cafe sữa / Bạc xỉu / Pepsi / Nước suối
+                        </div>
+                    </div>
+                </div>
+                <!-- Bữa trưa -->
+                <div class="menu-card fade-in">
+                    <div class="menu-card-header">
+                        <div class="menu-icon lunch"><i class="fas fa-utensils"></i></div>
+                        <div>
+                            <h3>Bữa Trưa</h3>
+                            <div class="menu-tag">Ngày 2 · Set menu</div>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Canh chua cá lăng</li>
+                            <li><i class="fas fa-circle"></i> Rau muống xào tỏi</li>
+                            <li><i class="fas fa-circle"></i> Gà Ram sả</li>
+                            <li><i class="fas fa-circle"></i> Trứng chiên thịt bằm</li>
+                            <li><i class="fas fa-circle"></i> Gỏi xoài khô cá lóc</li>
+                            <li><i class="fas fa-circle"></i> Cơm trắng</li>
+                            <li><i class="fas fa-circle"></i> Trái cây — Trà đá</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Tiệc tối BBQ -->
+                <div class="menu-card fade-in">
+                    <div class="menu-card-header">
+                        <div class="menu-icon bbq"><i class="fas fa-fire"></i></div>
+                        <div>
+                            <h3>Tiệc Tối Ngoài Trời</h3>
+                            <div class="menu-tag">Ngày 1 · BBQ bên hồ</div>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Lõi vai bò Mỹ sốt BBQ</li>
+                            <li><i class="fas fa-circle"></i> Thịt ba chỉ sốt BBQ</li>
+                            <li><i class="fas fa-circle"></i> Tôm thẻ sốt sate</li>
+                            <li><i class="fas fa-circle"></i> Cánh gà sốt sate</li>
+                            <li><i class="fas fa-circle"></i> Xúc xích Đức sốt sate</li>
+                            <li><i class="fas fa-circle"></i> Rau củ</li>
+                            <li><i class="fas fa-circle"></i> Sala dầu giấm</li>
+                            <li><i class="fas fa-circle"></i> Bánh mỳ bơ tỏi</li>
+                            <li><i class="fas fa-circle"></i> Cơm chiên cá mặn</li>
+                            <li><i class="fas fa-circle"></i> Trái cây tươi — Trà đá</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- VIDEO REVIEW -->
-    <section class="video-section">
+    <section class="video-section" id="video">
         <div class="container" style="text-align:center;">
             <div class="fade-in">
                 <span class="section-label">Video Review</span>
@@ -674,7 +883,7 @@
     </section>
 
     <!-- AGENDA / TIMELINE -->
-    <section>
+    <section id="agenda">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Lịch trình</span>
@@ -756,7 +965,7 @@
     </section>
 
     <!-- COST TABLE -->
-    <section class="cost-section">
+    <section class="cost-section" id="cost">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Chi phí</span>
@@ -812,7 +1021,7 @@
     </section>
 
     <!-- NOTES & RISKS -->
-    <section>
+    <section id="notes">
         <div class="container">
             <div class="fade-in">
                 <span class="section-label">Lưu ý</span>
@@ -877,6 +1086,38 @@
     </div>
 
     <script>
+        // Navbar: show after scrolling past hero
+        const navbar = document.getElementById('navbar');
+        const heroSection = document.getElementById('hero');
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        function updateNavbar() {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight - 100;
+            if (window.scrollY > heroBottom) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+            // Active link highlight
+            const sections = document.querySelectorAll('section[id]');
+            let current = '';
+            sections.forEach(sec => {
+                if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+            });
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', updateNavbar, { passive: true });
+        updateNavbar();
+
+        // Mobile toggle
+        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
         // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
